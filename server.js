@@ -38,6 +38,7 @@ app.get('/all', getAllProjects);
 // function to get all projects
 function getAllProjects(req, res){
     res.send(projectData);
+    console.log('GET request received');
     console.log(projectData);
 };
 
@@ -49,6 +50,7 @@ function addData(req, res){
     projectData['date'] = req.body.date;
     projectData['user_response'] = req.body.user_response;
     res.send(projectData);
+    console.log('POST request received');
     console.log(projectData);
 };
 
