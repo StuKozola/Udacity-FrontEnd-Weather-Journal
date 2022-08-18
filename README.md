@@ -19,7 +19,7 @@ If you are interested in testing your code as you go, you can use `tests.js` as 
   - [Installation of Dependencies](#installation-of-dependencies)
   - [Clone the Repo](#clone-the-repo)
   - [Start the Webserver Locally](#start-the-webserver-locally)
-  - [Run the App](#run-the-app)
+  - [Test the Routes](#test-the-routes)
 
 # Installation and Configuration
 
@@ -46,4 +46,14 @@ git clone https://TODO
 ```bash
 node server.js
 ```
-## Run the App
+
+## Test the Routes
+In another terminal, run the following commands:
+```bash
+# get all weather journal entries (if any)
+curl -X GET http://localhost:3000/all
+# add a weather journal entry
+curl -X POST -H "Content-Type: application/json" -d '{"temperature": "90 F", "date": "08/18/2022", "user_response": "Going to be a hot one today!"}' http://localhost:3000/add
+# get all weather journal entries (if any)
+curl -X GET http://localhost:3000/all
+```

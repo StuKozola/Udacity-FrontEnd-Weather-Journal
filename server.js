@@ -29,5 +29,26 @@ const server = app.listen(port, listening);
 // listening function
 function listening(){
     // log server status and port number
-    console.log('running on localhost:${port}');
-}
+    console.log(`running on localhost:${port}`);
+};
+
+/* Routes */
+// GET route for getting all projects
+app.get('/all', getAllProjects);
+// function to get all projects
+function getAllProjects(req, res){
+    res.send(projectData);
+    console.log(projectData);
+};
+
+// POST route for adding weather data
+app.post('/add', addData);
+// function to add weather data
+function addData(req, res){
+    projectData['temperature'] = req.body.temperature;
+    projectData['date'] = req.body.date;
+    projectData['user_response'] = req.body.user_response;
+    res.send(projectData);
+    console.log(projectData);
+};
+
