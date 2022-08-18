@@ -17,28 +17,6 @@ const content = document.getElementById('content');
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-// Event listener to add function to existing HTML DOM element (generate button)
-// This is an asych function with chained promises
-const generateBtn = document.getElementById('generate');
-generateBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    getWeather().then(data => {
-        // post data to /add
-        console.log(data.main.temp);
-        postData('/add', {
-            temp: data.main.temp,
-            date: newDate,
-            feelings: feelings.value
-        }).then(() => {
-            // call updateUI to update the UI with the new data from the server
-            updateUI()
-        }).catch(err => {
-            console.log(err)
-            alert('Something went wrong!  Please try again.');
-        });
-    } );
-} );
-
 /* Functions */
 // Function to validate the zip code
 const validateZip = (zip) => {
@@ -101,4 +79,26 @@ const updateUI = async () => {
     } catch (error) {
         console.log("error", error);
     }
-}
+};
+
+// Event listener to add function to existing HTML DOM element (generate button)
+// This is an asych function with chained promises
+const generateBtn = document.getElementById('generate');
+generateBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    getWeather().then(data => {
+        // post data to /add
+        console.log(data.main.temp);
+        postData('/add', {
+            temp: data.main.temp,
+            date: newDate,
+            feelings: feelings.value
+        }).then(() => {
+            // call updateUI to update the UI with the new data from the server
+            updateUI()
+        }).catch(err => {
+            console.log(err)
+            alert('Something went wrong!  Please try again.');
+        });
+    } );
+} );
